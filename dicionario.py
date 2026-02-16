@@ -1,15 +1,20 @@
 import time
 import os
 import platform
+"""
+Função de limpar tela que se adapta de acordo com o sistema utilizado pelo usuário
+"""
 def limpar_tela():
     if os.name == 'nt':
         os.system('cls')
     else:
         os.system('clear')
+    #se o sistema do usuário for windows, representado por 'nt', será usado o os.system('cls'), senão, será usado o os.system('clear')
 
 def voltar_menu():
     while True:
         volt = input('Deseja retornar ao menu? s/n: ').lower()
+        #.lower() utilizado para evitar que o código caia no else, caso o usuário digitasse S maiúsculo
         if volt == 's':
             return True
         elif volt == 'n':
@@ -29,7 +34,10 @@ def escolher_opcoes():
             limpar_tela()
             continue
 
-
+"""
+Função com diversos tratamentos de erros, impedindo o usuário de adicionar uma chave vazia, e também confirmando ao mesmo a 
+substituição, se a chave já existir
+"""
 def adicionar(dicionario):
         while True:
             chave = input('Digite uma chave: ').strip()
@@ -58,16 +66,19 @@ def adicionar(dicionario):
             else:
                 limpar_tela
                 continue
-            
-                
-                
+
+
+
 def finalizar_programa():
     print('Finalizando programa...')
     time.sleep(2)
     limpar_tela()
     exit()
     
-
+"""
+A função de deletar possui 3 escolhas diferentes ao usuário: Apagar a chave e valor, apagar somente o valor da chave,
+e retornar ao menu principal
+"""
 def deletar_itens(dicionario):
     if not dicionario:
         print('O dicionário está vazio, não há nada à ser removido. ')
